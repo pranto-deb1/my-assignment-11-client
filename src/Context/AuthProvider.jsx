@@ -34,11 +34,13 @@ const AuthProvider = ({ children }) => {
   };
 
   const signInUser = (email, password) => {
-    return asyncAction(() => signInWithEmailAndPassword(auth, email, password));
+    return asyncAction(
+      async () => await signInWithEmailAndPassword(auth, email, password)
+    );
   };
 
   const signInWithGoogle = () => {
-    return asyncAction(() => signInWithPopup(auth, googleProvider));
+    return asyncAction(async () => await signInWithPopup(auth, googleProvider));
   };
 
   const logOut = () => {
@@ -46,7 +48,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const upDateUserProfile = (profile) => {
-    return asyncAction(() => updateProfile(auth.currentUser, profile));
+    return asyncAction(async () => {
+      await updateProfile(auth.currentUser, profile);
+      await auth.currentUser.reload();
+    });
   };
 
   useEffect(() => {

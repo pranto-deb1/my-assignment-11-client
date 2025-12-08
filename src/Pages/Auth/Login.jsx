@@ -49,6 +49,7 @@ const Login = () => {
             />
 
             <button
+              type="button"
               className="btn btn-xs absolute top-[20%] right-2.5 z-10"
               onClick={() => setShowPassword(!showPassword)}
             >

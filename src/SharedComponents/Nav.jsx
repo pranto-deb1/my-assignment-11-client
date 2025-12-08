@@ -6,10 +6,16 @@ import UseAuth from "../Hoocks/UseAuth";
 import { RxDropdownMenu } from "react-icons/rx";
 
 const Nav = () => {
-  const { user, logOut } = UseAuth();
+  const { user, logOut, loading } = UseAuth();
+  // console.log("USER:", user);
+  // console.log("LOADING:", loading);
+  // console.log("PHOTO:", user?.photoURL);
+
   const [showSidebar, setShowSidebar] = useState(false);
+  const [showRightSidebar, setShowRightSidebar] = useState(false);
 
   const sidebarRef = useRef(null);
+  const sidebar2Ref = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -23,6 +29,22 @@ const Nav = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebar2Ref.current && !sidebar2Ref.current.contains(event.target)) {
+        setShowRightSidebar(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleLogOut = () => {
+    logOut();
+  };
+
   const links = (
     <>
       <NavLink to={"/"}>home</NavLink>
@@ -31,12 +53,19 @@ const Nav = () => {
       <NavLink>home</NavLink>
     </>
   );
+
+  if (loading) {
+    return (
+      <span className="loading loading-spinner loading-xl flex justify-self-center mt-[500px]"></span>
+    );
+  }
+
   return (
     <nav className="w-full mt-0 md:mt-8 md:w-11/12 md:rounded-xl mx-auto flex justify-around h-20 items-center z-50 bg-white shadow-sm">
       {showSidebar && <div className="fixed inset-0 z-10 bg-black/60 "></div>}
       <div
         ref={sidebarRef}
-        className={`h-full absolute left-0 top-0 bg-white w-[200px] transition-all duration-200 ease-in-out z-20 ${
+        className={`h-full flex items-center gap-5 flex-col absolute left-0 top-0 bg-white w-[200px] transition-all duration-200 ease-in-out z-20 ${
           showSidebar
             ? "opacity-100 pointer-events-auto translate-x-0"
             : "opacity-0 pointer-events-none -translate-x-full"
@@ -44,11 +73,28 @@ const Nav = () => {
       >
         <div className="flex flex-col gap-3.5 items-center mt-8">{links}</div>
       </div>
+
+      {user && (
+        <div
+          ref={sidebar2Ref}
+          className={`w-[200px] flex flex-col gap-4 items-center z-50 shadow-2xl rounded-xl absolute top-20 right-0  md:right-[100px] md:top-28 h-[400px] p-[22px] bg-white transition-all duration-200 ${
+            showRightSidebar
+              ? "opacity-100 translate-x-0 scale-100 pointer-events-auto"
+              : "opacity-0 translate-x-full scale-0 pointer-events-none"
+          }`}
+        >
+          <p className="text-2xl font-bold">{user.displayName}</p>
+          <button onClick={handleLogOut} className="btn btn-warning w-[80%]">
+            Log Out
+          </button>
+        </div>
+      )}
+
       <div className="flex items-center">
         <img src={NavLogo} alt="" className="w-[120px] md:w-[150px] h-auto" />
         <button
           onClick={() => setShowSidebar(!showSidebar)}
-          className="w-[150px] h-auto md:hidden ml-2.5 text-2xl"
+          className="mr-14 h-auto md:hidden ml-2.5 text-2xl"
         >
           {showSidebar ? "" : <RxDropdownMenu />}
         </button>
@@ -56,11 +102,11 @@ const Nav = () => {
       <div className="flex justify-between items-center gap-7">
         <div className="gap-3.5 hidden md:flex">{links}</div>
         <div className="">
-          {user ? (
+          {user && user.photoURL ? (
             <img
-              src={user.photoUrl ? user.photoUrl : defaultUserImage}
-              alt=""
-              className="w-[50px] h-[50px]"
+              onClick={() => setShowRightSidebar(true)}
+              src={user?.photoURL || defaultUserImage}
+              className="w-[50px] h-[50px] rounded-full z-50"
             />
           ) : (
             <Link to={"/auth/login"} className="btn">
