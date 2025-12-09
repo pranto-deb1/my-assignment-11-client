@@ -53,7 +53,7 @@ function Hero({ setSearch }) {
           spaceBetween={30}
           loop={true}
           autoplay={{
-            delay: 3000, // 3 sec
+            delay: 4000, 
             disableOnInteraction: false,
           }}
           pagination={{ clickable: true }}
