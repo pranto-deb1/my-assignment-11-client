@@ -83,6 +83,14 @@ const Nav = () => {
               : "opacity-0 translate-x-full scale-0 pointer-events-none"
           }`}
         >
+          <div className="w-full relative">
+            <button
+              className="text-xl font-black absolute -top-5 -right-4 btn btn-ghost"
+              onClick={() => setShowRightSidebar(false)}
+            >
+              x
+            </button>
+          </div>
           <p className="text-2xl font-bold">{user.displayName}</p>
           <button onClick={handleLogOut} className="btn btn-warning w-[80%]">
             Log Out

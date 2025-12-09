@@ -9,8 +9,9 @@ import Login from "./Pages/Auth/Login";
 import AuthLayout from "./Pages/Auth/AuthLayout";
 import Register from "./Pages/Auth/Register";
 import HomePage from "./Pages/HomePage/HomePage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import HomePage from "./Pages/HomePage";
-
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,7 +20,6 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
-        loader: () => fetch("/Hero.json").then((res) => res.json()),
       },
       {
         path: "/auth",
@@ -41,8 +41,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>
 );

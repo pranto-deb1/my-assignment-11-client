@@ -1,76 +1,58 @@
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { SwiperSlide, Swiper } from "swiper/react";
-import { useLoaderData } from "react-router";
+import React from "react";
 
 function Hero() {
-  const data = useLoaderData();
-  console.log(data);
   return (
-    <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        {data.map((item, index) => {
-          const hero = item.hero;
+    <div className="relative w-full h-[70vh] md:h-[85vh] lg:h-[90vh] flex items-center justify-center overflow-hidden">
+      <img
+        src="https://cdn.pixabay.com/photo/2018/01/24/17/33/light-bulb-3104355_1280.jpg"
+        alt="contest banner"
+        className="absolute inset-0 w-full h-full object-cover animate-zoomSlow"
+      />
 
-          return (
-            <SwiperSlide key={index}>
-              {/* Background Image */}
-              <div
-                className="w-full h-[600px] bg-cover bg-center relative flex justify-center items-center md:rounded-4xl"
-                style={{ backgroundImage: `url(${hero.image})` }}
-              >
-                <div>
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-black/50 md:rounded-4xl"></div>
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
 
-                  {/* Content */}
-                  <div className="relative z-10 text-white max-w-2xl mx-auto mt-40 px-4">
-                    <h1 className="text-4xl font-bold mb-4 animate-fade-in">
-                      {hero.title}
-                    </h1>
+      <div className="relative z-10 text-center max-w-3xl px-5">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-xl animate-fadeUp">
+          Explore. Create.
+          <span className="text-blue-400"> Win Contests.</span>
+        </h1>
 
-                    <p className="text-lg mb-6 opacity-90">{hero.subtitle}</p>
+        <p className="text-gray-200 mt-5 text-lg md:text-xl animate-fadeUp animation-delay-300">
+          Discover creative contests, join with talent, and achieve greatness.
+        </p>
 
-                    <div className="flex gap-4">
-                      <a
-                        href={hero.buttons.primary.link}
-                        className="px-6 py-3 bg-blue-600 rounded-lg text-white font-semibold hover:bg-blue-500 transition"
-                      >
-                        {hero.buttons.primary.text}
-                      </a>
-
-                      <a
-                        href={hero.buttons.secondary.link}
-                        className="px-6 py-3 bg-white/20 backdrop-blur rounded-lg text-white font-semibold hover:bg-white/30 transition"
-                      >
-                        {hero.buttons.secondary.text}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-    </>
+        <div className="mt-10 flex items-center justify-center">
+          <div
+            className="
+            bg-white/20 backdrop-blur-xl shadow-2xl 
+            flex items-center gap-3 w-full md:w-[550px] 
+            border border-white/30 rounded-full p-2 
+            hover:bg-white/30 transition-all
+          "
+          >
+            <input
+              type="text"
+              placeholder="🔍 Search contests (design, article, gaming...)"
+              className="
+                w-full bg-transparent text-white 
+                placeholder-gray-200 px-4 py-2 
+                focus:outline-none
+              "
+            />
+            <button
+              className="
+              bg-blue-500 hover:bg-blue-600 
+              text-white px-6 py-2 
+              rounded-full font-semibold 
+              transition-all shadow-lg
+            "
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
