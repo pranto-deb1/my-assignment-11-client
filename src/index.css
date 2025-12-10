@@ -2,3 +2,10 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
 }
+
+
+.active{
+  font-weight: bold;
+  text-decoration: underline;
+  color: blue;
+}

@@ -48,9 +48,9 @@ const Nav = () => {
   const links = (
     <>
       <NavLink to={"/"}>home</NavLink>
-      <NavLink>home</NavLink>
-      <NavLink>home</NavLink>
-      <NavLink>home</NavLink>
+      <NavLink to={"/all-contests"}>All Contests</NavLink>
+      <NavLink to={"/"}>home</NavLink>
+      <NavLink to={"/"}>home</NavLink>
     </>
   );
 

@@ -10,6 +10,7 @@ import AuthLayout from "./Pages/Auth/AuthLayout";
 import Register from "./Pages/Auth/Register";
 import HomePage from "./Pages/HomePage/HomePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AllContests from "./Pages/AllContests/AllContests";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             Component: Register,
           },
         ],
+      },
+      {
+        path: "/all-contests",
+        Component: AllContests,
       },
     ],
   },
