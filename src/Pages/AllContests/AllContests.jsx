@@ -108,7 +108,7 @@ const AllContests = () => {
           <option>All</option>
           <option>Image Design</option>
           <option>Article Writing</option>
-          {/* <option>Velvet</option> */}
+          
         </select>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9  w-11/12 xl:w-9/12 mx-auto mb-[200px]">
