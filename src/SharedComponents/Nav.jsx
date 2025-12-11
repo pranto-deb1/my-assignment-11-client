@@ -3,7 +3,7 @@ import NavLogo from "../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import defaultUserImage from "../assets/default-user.png";
 import UseAuth from "../Hoocks/UseAuth";
-import { RxDropdownMenu } from "react-icons/rx";
+import { RxCross2, RxDropdownMenu } from "react-icons/rx";
 
 const Nav = () => {
   const { user, logOut, loading } = UseAuth();
@@ -85,10 +85,10 @@ const Nav = () => {
         >
           <div className="w-full relative">
             <button
-              className="text-xl font-black absolute -top-5 -right-4 btn btn-ghost"
+              className="text-xl font-black absolute -top-5 -right-4 p-2 hover:text-red-500"
               onClick={() => setShowRightSidebar(false)}
             >
-              x
+              <RxCross2 />
             </button>
           </div>
           <p className="text-2xl font-bold">{user.displayName}</p>
