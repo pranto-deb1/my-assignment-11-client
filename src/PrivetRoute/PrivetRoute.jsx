@@ -9,7 +9,7 @@ const PrivetRoute = ({ children }) => {
   if (loading) return <span className="loading loading-bars loading-xl"></span>;
 
   if (!user)
-    return <Navigate state={location.pathname} to={"/login"}></Navigate>;
+    return <Navigate state={location.pathname} to={"/auth/login"}></Navigate>;
 
   return children;
 };

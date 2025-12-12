@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AllContests from "./Pages/AllContests/AllContests";
 import PrivetRoute from "./PrivetRoute/PrivetRoute";
 import ContestDetails from "./Pages/ContestDetails/ContestDetails";
+import UserDashboard from "./Dashboards/UserDashboard/UserDashboard";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             <ContestDetails></ContestDetails>
           </PrivetRoute>
         ),
+      },
+      {
+        path: "/user-dashboard",
+        element: <UserDashboard></UserDashboard>,
       },
     ],
   },
