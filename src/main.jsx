@@ -18,6 +18,7 @@ import Error from "./ErrorPage/Error";
 import CreatorDashboard from "./Dashboards/CreatorDashboard/CreatorDashboard";
 import CreateContest from "./Dashboards/CreatorDashboard/CreateContest";
 import AdminDashboard from "./Dashboards/AdminDashboard/AdminDashboard";
+import ManageUsers from "./Dashboards/AdminDashboard/ManageUsers";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -58,11 +59,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-dashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: (
+          <PrivetRoute>
+            <AdminDashboard></AdminDashboard>
+          </PrivetRoute>
+        ),
+        children: [
+          {
+            index: true,
+            Component: ManageUsers,
+          },
+        ],
       },
       {
         path: "/user-dashboard",
-        element: <UserDashboard></UserDashboard>,
+        element: (
+          <PrivetRoute>
+            <UserDashboard></UserDashboard>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/creator-dashboard",

@@ -3,10 +3,12 @@ import logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "./SocialLogin";
 import UseAuth from "../../Hoocks/UseAuth";
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { signInUser } = UseAuth();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -17,8 +19,9 @@ const Login = () => {
   } = useForm();
 
   const handleLogin = (data) => {
-    console.log(data);
-    signInUser(data.email, data.password);
+    signInUser(data.email, data.password).then(() => {
+      navigate(location?.state || "/");
+    });
   };
 
   return (

@@ -1,11 +1,87 @@
-import React from 'react';
+import React, { useState } from "react";
+import UseAuth from "../../Hoocks/UseAuth";
+import { Link, Outlet } from "react-router";
+import UseAxiosSecure from "../../Hoocks/UseAxiosSecure";
+import defaultImage from "../../assets/default-user.png";
 
 const AdminDashboard = () => {
+  const [active, setActive] = useState(1);
+
+  const { user, role, loading } = UseAuth();
+
+  if (loading || !user.email || !role)
     return (
-        <div>
-            
-        </div>
+      <span className="loading loading-spinner loading-xl flex justify-self-center mt-[300px]"></span>
     );
+  //   console.log(user);
+  //   console.log(role);
+
+  if (role !== "admin") {
+    return (
+      <div>
+        <h2 className="text-5xl font-black text-center mt-[300px]">
+          You are not suppose to view this page
+        </h2>
+        <Link
+          to={"/"}
+          className="flex justify-self-center mt-5 btn bg-blue-600"
+        >
+          Go back
+        </Link>
+      </div>
+    );
+  }
+  return (
+    <div>
+      <h2 className="text-5xl text-center mt-[50px] font-semibold">
+        Admin Dashboard
+      </h2>
+
+      <div className="w-full lg:11/12 xl:w-10/12 mx-auto">
+        <div className="bg-white rounded-2xl p-5 mt-14 max-w-[600px]">
+          <div className="flex items-center gap-6 flex-col md:flex-row ">
+            <img
+              src={user?.photoURL || defaultImage}
+              className="rounded-full w-[100px] h-[100px]"
+              alt="User"
+            />
+
+            <div className="">
+              <h4 className="text-2xl font-bold ">{user?.displayName}</h4>
+              <h5 className="text-xl font-bold">{user?.email}</h5>
+            </div>
+
+            <div className="self-stretch w-px border-r border-dashed border-gray-300"></div>
+
+            <div className="flex flex-col gap-3">
+              <Link
+                onClick={() => setActive(1)}
+                to={"/admin-dashboard"}
+                className={`${
+                  active === 1 && "bg-blue-400/60 shadow-lg"
+                } px-5 py-1 rounded-lg`}
+              >
+                Manage Users
+              </Link>
+              <Link
+                to={"/admin-dashboard"}
+                onClick={() => setActive(2)}
+                className={`${
+                  active === 2 && "bg-blue-400/60 shadow-lg"
+                } px-5 py-1  rounded-lg`}
+              >
+                Manage Contests
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full lg:11/12 xl:w-10/12 mx-auto mt-14">
+        <Outlet></Outlet>
+      </div>
+    </div>
+  );
 };
 
 export default AdminDashboard;

@@ -3,12 +3,14 @@ import logo from "../../assets/logo.png";
 import { useForm } from "react-hook-form";
 import { IoMdEye } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import UseAuth from "../../Hoocks/UseAuth";
 import UseAxiosSecure from "../../Hoocks/UseAxiosSecure";
 import { toast } from "react-toastify";
 
 const Register = () => {
+  const navigate = useNavigate();
+  // const location = useLocation();
   const axiosSecure = UseAxiosSecure();
   const [showPassword, setShowPassword] = useState(false);
   const { registerUser, upDateUserProfile } = UseAuth();
@@ -27,7 +29,7 @@ const Register = () => {
         };
         upDateUserProfile(updateUser)
           .then(() => {
-            toast.success("successfully created user");
+            navigate("/");
           })
           .catch((err) => {
             toast.error(err.code);

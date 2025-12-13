@@ -1,7 +1,29 @@
 import React from "react";
 import { Link, Outlet } from "react-router";
+import UseAuth from "../../Hoocks/UseAuth";
 
 const CreatorDashboard = () => {
+  const { user, role, loading } = UseAuth();
+  if (loading || !user.email || !role)
+    return (
+      <span className="loading loading-spinner loading-xl flex justify-self-center mt-[500px]"></span>
+    );
+
+  if (role !== "admin" && role !== "creator") {
+    return (
+      <div>
+        <h2 className="text-5xl font-black text-center mt-[300px]">
+          You are not suppose to view this page
+        </h2>
+        <Link
+          to={"/"}
+          className="flex justify-self-center mt-5 btn bg-blue-600"
+        >
+          Go back
+        </Link>
+      </div>
+    );
+  }
   return (
     <div>
       <h2 className="">Creator Dashboard</h2>
