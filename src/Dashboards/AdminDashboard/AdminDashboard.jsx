@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import UseAuth from "../../Hoocks/UseAuth";
-import { Link, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import UseAxiosSecure from "../../Hoocks/UseAxiosSecure";
 import defaultImage from "../../assets/default-user.png";
 
-const AdminDashboard = () => {
-  const [active, setActive] = useState(0);
-  
+// import "./AdminDashboard.css";
 
+const AdminDashboard = () => {
   const { user, role, loading } = UseAuth();
 
   if (loading || !user.email || !role)
@@ -55,24 +54,28 @@ const AdminDashboard = () => {
             <div className="self-stretch w-px border-r border-dashed border-gray-300"></div>
 
             <div className="flex flex-col gap-3">
-              <Link
-                onClick={() => setActive(1)}
-                to={"/admin-dashboard"}
-                className={`${
-                  active === 1 && "bg-blue-400/60 shadow-lg"
-                } px-5 py-1 rounded-lg`}
+              <NavLink
+                to="/admin-dashboard"
+                end
+                className={({ isActive }) =>
+                  `px-5 py-1 rounded-lg ${
+                    isActive ? " bg-blue-500/50 shadow-xl" : ""
+                  }`
+                }
               >
                 Manage Users
-              </Link>
-              <Link
-                to={"/admin-dashboard/manage-contests"}
-                onClick={() => setActive(2)}
-                className={`${
-                  active === 2 && "bg-blue-400/60 shadow-lg"
-                } px-5 py-1  rounded-lg`}
+              </NavLink>
+
+              <NavLink
+                to="/admin-dashboard/manage-contests"
+                className={({ isActive }) =>
+                  `px-5 py-1 rounded-lg ${
+                    isActive ? "bg-blue-500/50 shadow-xl" : ""
+                  }`
+                }
               >
                 Manage Contests
-              </Link>
+              </NavLink>
             </div>
           </div>
         </div>

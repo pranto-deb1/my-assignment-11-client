@@ -20,6 +20,9 @@ import CreateContest from "./Dashboards/CreatorDashboard/CreateContest";
 import AdminDashboard from "./Dashboards/AdminDashboard/AdminDashboard";
 import ManageUsers from "./Dashboards/AdminDashboard/ManageUsers";
 import ManageContests from "./Dashboards/AdminDashboard/ManageContests";
+import MyContests from "./Dashboards/CreatorDashboard/MyContests";
+import EditContests from "./Dashboards/CreatorDashboard/EditContests";
+// import MyContests from "./Dashboards/CreatorDashboard/MyContests";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -86,11 +89,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/creator-dashboard",
-        element: <CreatorDashboard></CreatorDashboard>,
+        element: (
+          <PrivetRoute>
+            <CreatorDashboard></CreatorDashboard>
+          </PrivetRoute>
+        ),
         children: [
           {
-            path: "/creator-dashboard/create-contest",
+            index: true,
             Component: CreateContest,
+          },
+          {
+            path: "/creator-dashboard/my-contests",
+            Component: MyContests,
+          },
+          {
+            path: "/creator-dashboard/edit-contest/:id",
+            Component: EditContests,
           },
         ],
       },

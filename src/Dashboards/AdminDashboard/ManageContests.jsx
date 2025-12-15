@@ -13,30 +13,16 @@ const ManageContests = () => {
   const { user, role, loading } = UseAuth();
   const axiosSecure = UseAxiosSecure();
 
-  const { data = [], refetch } = useQuery({
-    queryKey: ["users", user?.email],
+  const { data = {}, refetch } = useQuery({
+    queryKey: ["contests"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/contests`);
+      const res = await axiosSecure.get("/contests");
       return res.data;
     },
   });
 
-  // {
-  // "_id": "693bb106c9d6ae8b58ed8718",
-  // "name": "Minimal Logo Design Challenge",
-  // "image": "https://images.unsplash.com/photo-1527430253228-e93688616381",
-  // "description": "Create a clean and minimal logo for a fictional tech startup.",
-  // "price": 200,
-  // "prize": 3000,
-  // "taskInstruction": "Submit your logo in PNG format with transparent background.",
-  // "type": "Image Design",
-  // "deadline": "2025-12-20T23:59:59",
-  // "creatorEmail": "creator1@mail.com",
-  // "participants": 12,
-  // "winner": null,
-  // "status": "approved"
-  // },
+  const contests = data?.contests || [];
 
   console.log(data);
 
@@ -80,6 +66,7 @@ const ManageContests = () => {
             text: "Your file has been deleted.",
             icon: "success",
           });
+          refetch();
         });
       }
     });
@@ -104,7 +91,7 @@ const ManageContests = () => {
           </thead>
 
           <tbody>
-            {data.map((contest, index) => {
+            {contests.map((contest, index) => {
               return (
                 <tr
                   key={contest._id}

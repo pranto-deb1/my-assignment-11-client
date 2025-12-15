@@ -106,13 +106,12 @@ const AllContests = () => {
   const { data: contests = [] } = useQuery({
     queryKey: ["contests"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/contests?status=approved");
+      const res = await axiosSecure.get("/approved-contests?status=approved");
       return res.data;
     },
   });
 
   // console.log(data);
-  
 
   return (
     <div>

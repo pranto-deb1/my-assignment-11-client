@@ -7,7 +7,21 @@ import { RxCross2, RxDropdownMenu } from "react-icons/rx";
 // import UseAxiosSecure from "../Hoocks/UseAxiosSecure"
 
 const Nav = () => {
-  const { user, logOut, loading } = UseAuth();
+  const [dashboardRoute, setDashboardRoute] = useState("");
+  const { user, logOut, loading, role } = UseAuth();
+
+  useEffect(() => {
+    if (!user || !role) return;
+
+    if (role === "admin") {
+      setDashboardRoute("/admin-dashboard");
+    } else if (role === "creator") {
+      setDashboardRoute("/creator-dashboard");
+    } else {
+      setDashboardRoute("/user-dashboard");
+    }
+  }, [user, role]);
+
   // console.log("USER:", user);
   // console.log("LOADING:", loading);
   // console.log("PHOTO:", user?.photoURL);
@@ -95,11 +109,18 @@ const Nav = () => {
             </button>
           </div>
           <p className="text-2xl font-bold">{user.displayName}</p>
-          <button onClick={handleLogOut} className="btn btn-warning w-[80%]">
+          <button onClick={handleLogOut} className="btn bg-blue-500 w-full">
             Log Out
           </button>
 
-          {/* <Link to={}>DashBoard</Link> */}
+          {dashboardRoute && (
+            <Link
+              className="btn bg-blue-500 rounded w-full"
+              to={dashboardRoute}
+            >
+              Dashboard
+            </Link>
+          )}
         </div>
       )}
 
