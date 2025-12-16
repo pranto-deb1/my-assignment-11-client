@@ -41,6 +41,17 @@ const ContestDetails = () => {
     },
   });
 
+  const { data: winner = {} } = useQuery({
+    queryKey: ["winner", user, id],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/winners?contestId=${id}`);
+      return res.data[0];
+    },
+  });
+
+  // console.log(winner);
+
   const [alreadyPaid, setAlreadyPaid] = useState(null);
   const [alreadySubmited, setAlreadySubmited] = useState(null);
   useEffect(() => {
@@ -128,14 +139,13 @@ const ContestDetails = () => {
         paymentInfo
       );
       window.location.href = res.data.url;
-      console.log(res.data);
     }
   };
 
   if (isLoading) return <div className="text-center py-20">Loading...</div>;
 
   const isEnded = timeLeft === "Contest Ended";
-  // const hasWinner = contest.winnerName && contest.winnerImage;
+  const hasWinner = winner.name && winner.email;
   const isPaid = alreadyPaid && alreadyPaid.length > 0;
   const isSubmited = alreadySubmited && alreadySubmited.length > 0;
   return (
@@ -181,56 +191,58 @@ const ContestDetails = () => {
             </div>
           </div>
 
-          {/* {hasWinner && (
+          {hasWinner && (
             <div className="bg-yellow-50  border-2 border-yellow-400 p-6 rounded-xl mb-8">
               <h2 className="text-2xl font-bold text-yellow-700  mb-4 text-center">
                 🏆 Winner Declared! 🏆
               </h2>
               <div className="flex items-center justify-center gap-4">
                 <img
-                  src={contest.winnerImage}
+                  src={winner.image}
                   className="w-16 h-16 rounded-full border-2 border-yellow-400"
                   alt=""
                 />
                 <div>
-                  <p className="text-xl font-bold ">{contest.winnerName}</p>
+                  <p className="text-xl font-bold ">{winner.name}</p>
                   <p className="text-gray-500">
-                    Won the prize of ${contest.prize}
+                    Won the prize of ${winner.prize}
                   </p>
                 </div>
               </div>
             </div>
-          )} */}
+          )}
 
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button
-              onClick={handlePayment}
-              disabled={isEnded || (alreadyPaid && alreadyPaid.length > 0)}
-              className={`px-10 py-4 rounded-xl font-bold text-white transition-all ${
-                isEnded || (alreadyPaid && alreadyPaid.length > 0)
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-blue-600 hover:bg-blue-700 shadow-lg"
-              }`}
-            >
-              {isEnded
-                ? "Contest Ended"
-                : alreadyPaid && alreadyPaid.length > 0
-                ? "Already Registered"
-                : "Register / Pay"}
-            </button>
+          {!hasWinner && (
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <button
+                onClick={handlePayment}
+                disabled={isEnded || (alreadyPaid && alreadyPaid.length > 0)}
+                className={`px-10 py-4 rounded-xl font-bold text-white transition-all ${
+                  isEnded || (alreadyPaid && alreadyPaid.length > 0)
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-700 shadow-lg"
+                }`}
+              >
+                {isEnded
+                  ? "Contest Ended"
+                  : alreadyPaid && alreadyPaid.length > 0
+                  ? "Already Registered"
+                  : "Register / Pay"}
+              </button>
 
-            <button
-              onClick={() => setIsModalOpen(true)}
-              disabled={!isPaid || isSubmited || isEnded}
-              className={`px-10 py-4 rounded-xl font-bold text-white shadow-lg transition-all ${
-                !isPaid || isSubmited || isEnded
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-green-500 hover:bg-green-600"
-              }`}
-            >
-              Submit Task
-            </button>
-          </div>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                disabled={!isPaid || isSubmited || isEnded}
+                className={`px-10 py-4 rounded-xl font-bold text-white shadow-lg transition-all ${
+                  !isPaid || isSubmited || isEnded
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-green-500 hover:bg-green-600"
+                }`}
+              >
+                Submit Task
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
