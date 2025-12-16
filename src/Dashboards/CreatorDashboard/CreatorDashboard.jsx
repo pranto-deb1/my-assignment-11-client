@@ -43,10 +43,8 @@ const CreatorDashboard = () => {
               to="/creator-dashboard"
               end
               className={({ isActive }) =>
-                `px-4 py-2 rounded-lg font-medium transition ${
-                  isActive
-                    ? "bg-blue-500 text-white shadow"
-                    : "hover:bg-blue-100"
+                `px-5 py-1 rounded-lg ${
+                  isActive ? " bg-blue-500/50 shadow-xl" : ""
                 }`
               }
             >
@@ -56,10 +54,8 @@ const CreatorDashboard = () => {
             <NavLink
               to="/creator-dashboard/my-contests"
               className={({ isActive }) =>
-                `px-4 py-2 rounded-lg font-medium transition ${
-                  isActive
-                    ? "bg-blue-500 text-white shadow"
-                    : "hover:bg-blue-100"
+                `px-5 py-1 rounded-lg ${
+                  isActive ? " bg-blue-500/50 shadow-xl" : ""
                 }`
               }
             >

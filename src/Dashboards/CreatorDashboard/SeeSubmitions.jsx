@@ -33,7 +33,7 @@ const SeeSubmitions = () => {
       const winnerDetails = {
         name: item.userName,
         winnerId: item._id,
-        email: item.userEmail,
+        userEmail: item.userEmail,
         image: item.userPhoto,
         prize: item.winingPrize,
         contestId: item.contestId,

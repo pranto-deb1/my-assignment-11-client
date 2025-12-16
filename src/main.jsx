@@ -25,6 +25,7 @@ import EditContests from "./Dashboards/CreatorDashboard/EditContests";
 import PaymentSuccess from "./Payment/PaymentSuccess";
 import PaymentCanceled from "./Payment/PaymentCanceled";
 import SeeSubmitions from "./Dashboards/CreatorDashboard/SeeSubmitions";
+import MyParticipations from "./Dashboards/UserDashboard/MyParticipations";
 // import MyContests from "./Dashboards/CreatorDashboard/MyContests";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
@@ -97,6 +98,12 @@ const router = createBrowserRouter([
             <UserDashboard></UserDashboard>
           </PrivetRoute>
         ),
+        children: [
+          {
+            index: true,
+            Component: MyParticipations,
+          },
+        ],
       },
       {
         path: "/creator-dashboard",

@@ -128,6 +128,7 @@ const ContestDetails = () => {
         contestName: contest.name,
         userEmail: user.email,
         contestId: contest._id,
+        contestEnds: timeLeft,
       };
 
       localStorage.setItem("contestId", paymentInfo.contestId);

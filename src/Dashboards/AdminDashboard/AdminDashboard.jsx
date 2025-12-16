@@ -18,7 +18,7 @@ const AdminDashboard = () => {
 
   if (role !== "admin") {
     return (
-      <div>
+      <div className="my-[300px]">
         <h2 className="text-5xl font-black text-center mt-[300px]">
           You are not suppose to view this page
         </h2>
