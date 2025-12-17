@@ -37,7 +37,7 @@ const AllContests = () => {
   }
 
   return (
-    <div>
+    <div className="min-h-screen">
       <h2 className="text-5xl font-bold text-center mb-5">All Contests</h2>
 
       <div className="flex justify-end mt-10 mb-10 w-11/12 xl:w-9/12 mx-auto">

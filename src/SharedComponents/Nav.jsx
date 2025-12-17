@@ -84,6 +84,16 @@ const Nav = () => {
       >
         All Contests
       </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `px-2 py-1 rounded-lg ${
+            isActive ? "bg-blue-500/50 shadow-xl" : "hover:bg-blue-100/50"
+          }`
+        }
+        to={"/about"}
+      >
+        About
+      </NavLink>
     </>
   );
 

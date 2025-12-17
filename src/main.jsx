@@ -28,6 +28,7 @@ import SeeSubmitions from "./Dashboards/CreatorDashboard/SeeSubmitions";
 import MyParticipations from "./Dashboards/UserDashboard/MyParticipations";
 import MyWin from "./Dashboards/UserDashboard/MyWin";
 import MyProfile from "./Dashboards/UserDashboard/MyProfile";
+import AboutPage from "./Pages/About/AboutPage";
 // import MyContests from "./Dashboards/CreatorDashboard/MyContests";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: HomePage,
+      },
+      {
+        path: "/about",
+        Component: AboutPage,
       },
       {
         path: "/paymentSuccess",
