@@ -26,10 +26,10 @@ const PaymentSuccess = () => {
 
           return;
         }
-        console.log(transactionId);
-        console.log(contestId);
-        console.log(contestName);
-        console.log(amount);
+        // console.log(transactionId);
+        // console.log(contestId);
+        // console.log(contestName);
+        // console.log(amount);
         const data = {
           contestId,
           contestName,
