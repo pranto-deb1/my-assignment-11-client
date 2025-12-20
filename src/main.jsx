@@ -29,6 +29,8 @@ import MyParticipations from "./Dashboards/UserDashboard/MyParticipations";
 import MyWin from "./Dashboards/UserDashboard/MyWin";
 import MyProfile from "./Dashboards/UserDashboard/MyProfile";
 import AboutPage from "./Pages/About/AboutPage";
+import FAQPage from "./Pages/FAQ/FAQPage";
+import Leaderboard from "./Pages/LeaderBoard/LeaderBoard";
 // import MyContests from "./Dashboards/CreatorDashboard/MyContests";
 // import HomePage from "./Pages/HomePage";
 const queryClient = new QueryClient();
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/about",
         Component: AboutPage,
+      },
+      {
+        path: "/faq",
+        Component: FAQPage,
+      },
+      {
+        path: "/leaderboard",
+        Component: Leaderboard,
       },
       {
         path: "/paymentSuccess",

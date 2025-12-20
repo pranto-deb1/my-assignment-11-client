@@ -53,7 +53,7 @@ const ExtraSection = () => {
           </Link>
           <Link
             to={"/auth/login"}
-            className="bg-indigo-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:scale-105 transition-transform"
+            className="bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:scale-105 transition-transform"
           >
             Get Started
           </Link>

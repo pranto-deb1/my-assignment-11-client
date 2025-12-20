@@ -27,7 +27,7 @@ const CreatorDashboard = () => {
   }
 
   return (
-    <div className="w-full xl:w-11/12 mx-auto mt-10 mb-16">
+    <div className="w-full xl:w-11/12 mx-auto mt-10 mb-16 min-h-screen">
       <h2 className="text-4xl font-bold text-center mb-10">
         Creator Dashboard
       </h2>

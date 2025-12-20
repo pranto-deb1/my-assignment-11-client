@@ -3,7 +3,7 @@ import ContestCard from "../HomePage/PopularContest/ContestCard";
 import UseAxiosSecure from "../../Hoocks/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 10;
 
 const AllContests = () => {
   const axiosSecure = UseAxiosSecure();

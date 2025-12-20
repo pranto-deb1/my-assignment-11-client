@@ -90,9 +90,29 @@ const Nav = () => {
             isActive ? "bg-blue-500/50 shadow-xl" : "hover:bg-blue-100/50"
           }`
         }
+        to={"/leaderboard"}
+      >
+        Leaderboard
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `px-2 py-1 rounded-lg ${
+            isActive ? "bg-blue-500/50 shadow-xl" : "hover:bg-blue-100/50"
+          }`
+        }
         to={"/about"}
       >
         About
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `px-2 py-1 rounded-lg ${
+            isActive ? "bg-blue-500/50 shadow-xl" : "hover:bg-blue-100/50"
+          }`
+        }
+        to={"/faq"}
+      >
+        FAQ's
       </NavLink>
     </>
   );

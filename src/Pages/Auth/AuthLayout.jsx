@@ -9,7 +9,7 @@ const AuthLayout = () => {
         <h3 className="text-5xl font-semibold">Join and win like others</h3>
         <AuthCards></AuthCards>
       </div>
-      <div className="w-full lg:w-[60%] flex items-center justify-center mb-15">
+      <div className="w-full lg:w-[60%] flex items-center justify-center mb-15 min-h-[70vh]">
         <Outlet></Outlet>
       </div>
     </div>

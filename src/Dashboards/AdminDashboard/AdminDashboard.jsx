@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet } from "react-router";
 import UseAxiosSecure from "../../Hoocks/UseAxiosSecure";
 import defaultImage from "../../assets/default-user.png";
 
-// import "./AdminDashboard.css";
+
 
 const AdminDashboard = () => {
   const { user, role, loading } = UseAuth();
@@ -13,9 +13,7 @@ const AdminDashboard = () => {
     return (
       <span className="loading loading-spinner loading-xl flex justify-self-center mt-[300px]"></span>
     );
-  //   console.log(user);
-  //   console.log(role);
-
+  
   if (role !== "admin") {
     return (
       <div className="my-[300px]">
