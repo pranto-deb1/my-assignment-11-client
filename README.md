@@ -51,10 +51,10 @@ Admin Password: @Admin123
 ## Installation & Running Locally
 
 1. **Clone the repository**  
-   "git clone https://github.com/YourUsername/local-food-lovers.git"
+   "git clone https://github.com/pranto-deb1/my-assignment-11-client.git"
 
 2. **Navigate to the project directory**
-   "cd local-food-lovers"
+   "my-assignment-11-server"
 
 3. **Install dependencies**
    "npm install"
