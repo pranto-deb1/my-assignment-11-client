@@ -65,17 +65,19 @@ Admin Password: @Admin123
    _Copy your Firebase configuration._
    _Create a .env file in the project root and add your Firebase config:_
 
-*VITE_API_KEY="Your api key"*
+*VITE_FIREBASE_API_KEY="Your api key"*
 
-*VITE_AUTHDOMAIN="auth domain"*
+*VITE_FIREBASE_AUTH_DOMAIN="auth domain"*
 
-*VITE_PROJECT_ID="your project id"*
+*VITE_FIREBASE_PROJECT_ID="your project id"*
 
-*VITE_STORAGE_BUCKET="storage bucket"*
+*VITE_FIREBASE_STORAGE_BUCKET="storage bucket"*
 
-*VITE_MESSAGING_SENDER_ID="your sender id"*
+*VITE_FIREBASE_MESSAGING_SENDER_ID="your sender id"*
 
-*VITE_APP_ID="your app id"*
+*VITE_FIREBASE_APP_ID="your app id"*
+
+
 
 5. **Start the development server**
    "npm run dev"
