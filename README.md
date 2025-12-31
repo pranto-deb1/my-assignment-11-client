@@ -47,3 +47,37 @@ ContestHub is a full-stack contest creation and participation platform where use
 
 Admin Email: admin@gmail.com  
 Admin Password: @Admin123
+
+## Installation & Running Locally
+
+1. **Clone the repository**  
+   "git clone https://github.com/YourUsername/local-food-lovers.git"
+
+2. **Navigate to the project directory**
+   "cd local-food-lovers"
+
+3. **Install dependencies**
+   "npm install"
+
+4. **Set up Firebase**
+   _Go to Firebase Console and create a new project._
+   _Enable Authentication (Email/Password login) and Firestore Database._
+   _Copy your Firebase configuration._
+   _Create a .env file in the project root and add your Firebase config:_
+
+*VITE_API_KEY="Your api key"*
+
+*VITE_AUTHDOMAIN="auth domain"*
+
+*VITE_PROJECT_ID="your project id"*
+
+*VITE_STORAGE_BUCKET="storage bucket"*
+
+*VITE_MESSAGING_SENDER_ID="your sender id"*
+
+*VITE_APP_ID="your app id"*
+
+5. **Start the development server**
+   "npm run dev"
+
+6. **Open your browser and go to "http://localhost:5173"**
